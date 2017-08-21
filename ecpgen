@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# Generate messages templates
+ecpc list.html.hpp MessagesListHtml < ./templates/messages/list.html.ecp > ./templates/messages/list.html.cpp
+
+# Generate sessions templates
+ecpc new.html.hpp SessionsNewHtml < ./templates/sessions/new.html.ecp > ./templates/sessions/new.html.cpp
+
+# Generate users templates
+ecpc new.html.hpp UsersNewHtml < ./templates/users/new.html.ecp > ./templates/users/new.html.cpp
