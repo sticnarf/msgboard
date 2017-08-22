@@ -1,7 +1,7 @@
 #include "list.html.hpp"
 std::string MessagesListHtml::render() {
 std::string result;
-result += R"sGSwwPFE(<!DOCTYPE HTML>
+result += R"xFrdBdRc(<!DOCTYPE HTML>
 <html>
 <head>
     <link rel="stylesheet" href="/assets/style.css">
@@ -32,7 +32,7 @@ result += R"sGSwwPFE(<!DOCTYPE HTML>
     </div>
 </div>
 </body>
-</html>)sGSwwPFE";
+</html>)xFrdBdRc";
 return result;
 }
 

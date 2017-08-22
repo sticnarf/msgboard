@@ -1,7 +1,7 @@
 #include "new.html.hpp"
 std::string SessionsNewHtml::render() {
 std::string result;
-result += R"hHxkFAxT(<!DOCTYPE HTML>
+result += R"ysVSf6vI(<!DOCTYPE HTML>
 <html>
 <head>
     <link rel="stylesheet" href="/assets/style.css">
@@ -33,7 +33,7 @@ result += R"hHxkFAxT(<!DOCTYPE HTML>
     </div>
 </div>
 </body>
-</html>)hHxkFAxT";
+</html>)ysVSf6vI";
 return result;
 }
 

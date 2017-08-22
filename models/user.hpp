@@ -3,22 +3,38 @@
 
 #include <string>
 #include <chrono>
+#include <memory>
+
+class User;
+
+typedef std::shared_ptr<User> UserPtr;
 
 class User {
 private:
     int id;
-    std::string email;
-    std::string nickname;
+    std::string username;
     std::string passwordSalt;
-    std::string passwordDigit;
+    std::string passwordDigest;
     std::chrono::system_clock::time_point createdAt;
 
     void setPassword(const std::string &password);
 
+    void generateSalt();
+
+    std::string generatePasswordDigest(const std::string &password);
+
 public:
-    User(int id, const std::string &email, const std::string &nickname, const std::string &password);
+    User() = default;
+
+    User(const std::string &username, const std::string &password);
 
     bool authenticate(const std::string &password);
+
+    bool save();
+
+    static UserPtr getById(int id);
+
+    static UserPtr getByUsername(const std::string &username);
 };
 
 #endif
