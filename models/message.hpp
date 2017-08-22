@@ -4,6 +4,7 @@
 #include <string>
 #include <chrono>
 #include <memory>
+#include <vector>
 #include "user.hpp"
 
 class Message;
@@ -22,6 +23,8 @@ public:
 
     Message(UserPtr author, const std::string &content);
 
+    Message(UserPtr author, const std::string &content, std::chrono::system_clock::time_point createdAt);
+
     int getId() const;
 
     const UserPtr &getAuthor() const;
@@ -34,7 +37,11 @@ public:
 
     void setCreatedAt(const std::chrono::system_clock::time_point &createdAt);
 
+    std::string getFriendlyCreatedAt();
+
     bool save();
+
+    static std::vector<MessagePtr> getAll();
 };
 
 #endif

@@ -13,7 +13,7 @@ MiddlewarePtr NewMessage::call(Request &req, std::shared_ptr<Response> &resp) {
 //}
 
 MiddlewarePtr ListMessage::call(Request &req, std::shared_ptr<Response> &resp) {
-    resp->body = MessagesListHtml(std::vector<Message>(), SessionsHelper::currentUser(req)).render();
+    resp->body = MessagesListHtml(Message::getAll(), SessionsHelper::currentUser(req)).render();
     return nullptr;
 }
 

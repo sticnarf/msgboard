@@ -1,7 +1,7 @@
 #include "list.html.hpp"
 std::string MessagesListHtml::render() {
 std::string result;
-result += R"xr5BOVmb(<!DOCTYPE HTML>
+result += R"ialKG5iX(<!DOCTYPE HTML>
 <html>
 <head>
     <link rel="stylesheet" href="/assets/style.css">
@@ -14,44 +14,51 @@ result += R"xr5BOVmb(<!DOCTYPE HTML>
         <div class="col-xs-12 col-md-4 col-md-offset-4">
             <h1>Message board</h1>
             <table class="table table-bordered table-striped main-table">
-                <tr>
-                    <td>Row 1</td>
-                </tr>
-                <tr>
-                    <td>Row 2</td>
-                </tr>
-                <tr>
-                    <td>Row 3</td>
-                </tr>
-                <tr>
-                    <td>Row 4</td>
-                </tr>
+                )ialKG5iX";
+ for (auto message : messages) { 
+result += R"xQepISKl(
+                <tr><td>
+                <div class="author-name">)xQepISKl";
+result += fmt::format("{}", message->getAuthor()->getUsername() );
+result += R"51HRI9Xc(:</div>
+                <div class="message-content">
+                    )51HRI9Xc";
+result += fmt::format("{}", message->getContent() );
+result += R"gGGvsmqE(
+                </div>
+                <small class="message-time text-right">)gGGvsmqE";
+result += fmt::format("{}", message->getFriendlyCreatedAt() );
+result += R"IzQAl2Ir(</small>
+                </td></tr>
+                )IzQAl2Ir";
+ } 
+result += R"a6ujb3j9(
             </table>
-            )xr5BOVmb";
+            )a6ujb3j9";
  if (currentUser) { 
-result += R"8Od0G32T(
+result += R"AEIU0xuJ(
             <p>
-                Hello, )8Od0G32T";
+                Hello, )AEIU0xuJ";
 result += fmt::format("{}", currentUser->getUsername() );
-result += R"aE01lTqG(!
+result += R"7x3lDqVu(!
                 <a href="/logout">Logout</a>
             </p>
             <a href="/messages/new" class="btn btn-primary">New message</a>
-            )aE01lTqG";
+            )7x3lDqVu";
  } else { 
-result += R"Wkb292Fq(
+result += R"CpEPRLX9(
             <p>
                 You are not logged in.
                 <a href="/login">Login</a>
             </p>
-            )Wkb292Fq";
+            )CpEPRLX9";
  } 
-result += R"lXLot9z5(
+result += R"N2BxU28F(
         </div>
     </div>
 </div>
 </body>
-</html>)lXLot9z5";
+</html>)N2BxU28F";
 return result;
 }
 

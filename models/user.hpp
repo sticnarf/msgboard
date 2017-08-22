@@ -31,6 +31,14 @@ public:
     const std::string &getUsername() const;
 
 public:
+    void setUsername(const std::string &username);
+
+    void setPasswordSalt(const std::string &passwordSalt);
+
+    void setPasswordDigest(const std::string &passwordDigest);
+
+    void setCreatedAt(const std::chrono::system_clock::time_point &createdAt);
+
     User() = default;
 
     User(const std::string &username, const std::string &password);

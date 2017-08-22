@@ -8,11 +8,11 @@
 
 class MessagesListHtml : Template {
 private:
-    std::vector<Message> messages;
+    std::vector<MessagePtr> messages;
     UserPtr currentUser;
 
 public:
-    MessagesListHtml(const std::vector<Message> &messages, UserPtr currentUser) :
+    MessagesListHtml(const std::vector<MessagePtr> &messages, UserPtr currentUser) :
             messages(messages), currentUser(currentUser) {}
 
     std::string render() override;

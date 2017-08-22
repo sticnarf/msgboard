@@ -1,3 +1,13 @@
 .main-table {
     margin: 20px 0;
 }
+
+.message-content {
+    margin: 0 15px;
+    word-break: break-all;
+}
+
+.message-time {
+    display: block;
+    width: 100%;
+}

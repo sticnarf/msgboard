@@ -6,6 +6,7 @@
 #include <cryptopp/base64.h>
 #include <cryptopp/sha.h>
 #include <hane/hane.hpp>
+#include <iostream>
 
 User::User(const std::string &username, const std::string &password)
         : username(username) {
@@ -66,7 +67,7 @@ UserPtr User::getById(int id) {
         res->username = r[0][0].as<std::string>();
         res->passwordDigest = r[0][1].as<std::string>();
         res->passwordSalt = r[0][2].as<std::string>();
-
+        pool.returnConnection(conn);
         return res;
     } catch (const std::exception &e) {
         Logger::getInstance().error("User::getById error: {}", e.what());
@@ -81,7 +82,8 @@ UserPtr User::getByUsername(const std::string &username) {
 
     try {
         pqxx::work txn(*conn);
-        pqxx::result r = txn.exec("SELECT id, password_digest, salt FROM users WHERE username=" + txn.quote(username));
+        pqxx::result r = txn.exec("SELECT id, password_digest, salt "
+                                          "FROM users WHERE username=" + txn.quote(username));
 
         if (r.size() == 0)
             return nullptr;
@@ -91,7 +93,7 @@ UserPtr User::getByUsername(const std::string &username) {
         res->username = username;
         res->passwordDigest = r[0][1].as<std::string>();
         res->passwordSalt = r[0][2].as<std::string>();
-
+        pool.returnConnection(conn);
         return res;
     } catch (const std::exception &e) {
         Logger::getInstance().error("User::getByUsername error: {}", e.what());
@@ -111,6 +113,7 @@ bool User::save() {
                  + txn.quote(passwordSalt) + ")");
 
         txn.commit();
+        pool.returnConnection(conn);
         return true;
     } catch (const std::exception &e) {
         Logger::getInstance().error("User::save error: {}", e.what());
@@ -125,4 +128,20 @@ const std::string &User::getUsername() const {
 
 int User::getId() const {
     return id;
+}
+
+void User::setUsername(const std::string &username) {
+    User::username = username;
+}
+
+void User::setPasswordSalt(const std::string &passwordSalt) {
+    User::passwordSalt = passwordSalt;
+}
+
+void User::setPasswordDigest(const std::string &passwordDigest) {
+    User::passwordDigest = passwordDigest;
+}
+
+void User::setCreatedAt(const std::chrono::system_clock::time_point &createdAt) {
+    User::createdAt = createdAt;
 }
