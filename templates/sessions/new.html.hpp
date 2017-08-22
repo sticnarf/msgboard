@@ -5,7 +5,13 @@
 #include <vector>
 
 class SessionsNewHtml : Template {
+    std::vector<std::string> errorMessages;
+
 public:
+    SessionsNewHtml() = default;
+
+    SessionsNewHtml(const std::vector<std::string> &errorMessages) : errorMessages(errorMessages) {}
+
     std::string render() override;
 };
 

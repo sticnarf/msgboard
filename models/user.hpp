@@ -24,6 +24,9 @@ private:
     std::string generatePasswordDigest(const std::string &password);
 
 public:
+    const std::string &getUsername() const;
+
+public:
     User() = default;
 
     User(const std::string &username, const std::string &password);

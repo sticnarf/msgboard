@@ -1,6 +1,7 @@
 #include "users_controller.hpp"
 #include "../templates/users/new.html.hpp"
 #include "../models/user.hpp"
+#include "../helpers/sessions_helper.hpp"
 #include <vector>
 
 MiddlewarePtr NewUser::call(Request &req, std::shared_ptr<Response> &resp) {
@@ -45,7 +46,9 @@ MiddlewarePtr CreateUser::call(Request &req, std::shared_ptr<Response> &resp) {
     if (errorMessages.empty()) {
         user = std::make_shared<User>(username, password);
         if (user->save()) {
-            // TODO login user
+            SessionsHelper::loginUser(user, req);
+            resp->setStatusCode(StatusCode::HTTP_SEE_OTHER);
+            resp->headers.put("Location", std::make_shared<HeaderContent>("/"));
         } else {
             errorMessages.emplace_back("Unknown error!");
         }

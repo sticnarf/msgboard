@@ -43,7 +43,7 @@ std::string User::generatePasswordDigest(const std::string &password) {
     CryptoPP::SHA256 hash;
     std::string digest;
     CryptoPP::StringSource ss
-            (password, true,
+            (password + passwordSalt, true,
              new CryptoPP::HashFilter(hash,
                                       new CryptoPP::Base64Encoder(new CryptoPP::StringSink(digest))));
 
@@ -64,8 +64,8 @@ UserPtr User::getById(int id) {
         auto res = std::make_shared<User>();
         res->id = id;
         res->username = r[0][0].as<std::string>();
-        res->passwordDigest = r[0][0].as<std::string>();
-        res->passwordSalt = r[0][0].as<std::string>();
+        res->passwordDigest = r[0][1].as<std::string>();
+        res->passwordSalt = r[0][2].as<std::string>();
 
         return res;
     } catch (const std::exception &e) {
@@ -89,8 +89,8 @@ UserPtr User::getByUsername(const std::string &username) {
         auto res = std::make_shared<User>();
         res->id = r[0][0].as<int>();
         res->username = username;
-        res->passwordDigest = r[0][0].as<std::string>();
-        res->passwordSalt = r[0][0].as<std::string>();
+        res->passwordDigest = r[0][1].as<std::string>();
+        res->passwordSalt = r[0][2].as<std::string>();
 
         return res;
     } catch (const std::exception &e) {
@@ -117,4 +117,8 @@ bool User::save() {
         pool.returnConnection(conn);
         return false;
     }
+}
+
+const std::string &User::getUsername() const {
+    return username;
 }

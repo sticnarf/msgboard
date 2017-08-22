@@ -27,8 +27,8 @@ int main() {
     route->addRule(std::regex("/login"), HttpMethod::METHOD_POST, std::make_shared<CreateSession>());
     route->addRule(std::regex("/logout"), HttpMethod::METHOD_GET, std::make_shared<DeleteSession>());
 
-    route->addRule(std::regex("\\/users\\/new"), HttpMethod::METHOD_GET, std::make_shared<NewUser>());
-    route->addRule(std::regex("\\/users\\/{0,1}"), HttpMethod::METHOD_POST, std::make_shared<CreateUser>());
+    route->addRule(std::regex("/users/new"), HttpMethod::METHOD_GET, std::make_shared<NewUser>());
+    route->addRule(std::regex("/users/{0,1}"), HttpMethod::METHOD_POST, std::make_shared<CreateUser>());
 
     auto session = std::make_shared<SessionMiddleware>(route);
 

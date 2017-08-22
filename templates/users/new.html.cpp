@@ -1,7 +1,7 @@
 #include "new.html.hpp"
 std::string UsersNewHtml::render() {
 std::string result;
-result += R"QQMXPqbN(<!DOCTYPE HTML>
+result += R"BrUYgyjE(<!DOCTYPE HTML>
 <html>
 <head>
     <link rel="stylesheet" href="/assets/style.css">
@@ -16,19 +16,19 @@ result += R"QQMXPqbN(<!DOCTYPE HTML>
     <div class="row">
         <div class="col-xs-12 col-md-4 col-md-offset-4">
             <h1>Register</h1>
-            )QQMXPqbN";
+            )BrUYgyjE";
  for (auto &message : errorMessages) { 
-result += R"7kj4aa8s(
+result += R"8Yz1AFXv(
             <div class="alert alert-danger" role="alert">
                 <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                 <span class="sr-only">Error:</span>
-                )7kj4aa8s";
+                )8Yz1AFXv";
 result += fmt::format("{}", message );
-result += R"A419VImS(
+result += R"ogOwuAh7(
             </div>
-            )A419VImS";
+            )ogOwuAh7";
  } 
-result += R"7E1GUlkA(
+result += R"64gZfI2Z(
             <form class="main-table" action="/users" method="post">
                 <div class="form-group">
                     <label for="username">Username</label>
@@ -50,7 +50,7 @@ result += R"7E1GUlkA(
     </div>
 </div>
 </body>
-</html>)7E1GUlkA";
+</html>)64gZfI2Z";
 return result;
 }
 

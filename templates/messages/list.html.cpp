@@ -1,7 +1,7 @@
 #include "list.html.hpp"
 std::string MessagesListHtml::render() {
 std::string result;
-result += R"xFrdBdRc(<!DOCTYPE HTML>
+result += R"1pI7s6Xq(<!DOCTYPE HTML>
 <html>
 <head>
     <link rel="stylesheet" href="/assets/style.css">
@@ -27,12 +27,31 @@ result += R"xFrdBdRc(<!DOCTYPE HTML>
                     <td>Row 4</td>
                 </tr>
             </table>
+            )1pI7s6Xq";
+ if (currentUser) { 
+result += R"yYfxBGAx(
+            <p>
+                Hello, )yYfxBGAx";
+result += fmt::format("{}", currentUser->getUsername() );
+result += R"spo3YOu3(!
+                <a href="/logout">Logout</a>
+            </p>
             <a href="/new" class="btn btn-primary">New message</a>
+            )spo3YOu3";
+ } else { 
+result += R"oKtudDSY(
+            <p>
+                You are not logged in.
+                <a href="/login">Login</a>
+            </p>
+            )oKtudDSY";
+ } 
+result += R"MnoMzIaD(
         </div>
     </div>
 </div>
 </body>
-</html>)xFrdBdRc";
+</html>)MnoMzIaD";
 return result;
 }
 
