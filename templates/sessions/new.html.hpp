@@ -1,7 +1,7 @@
-#ifndef MSGBOARD_LIST_HTML_HPP
-#define MSGBOARD_LIST_HTML_HPP
+#ifndef MSGBOARD_SESSIONS_NEW_HTML_HPP
+#define MSGBOARD_SESSIONS_NEW_HTML_HPP
 
-#include <hane/ecp/template.hpp>
+#include <hane/hane.hpp>
 #include <vector>
 
 class SessionsNewHtml : Template {

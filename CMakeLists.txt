@@ -13,6 +13,6 @@ execute_process(COMMAND ${PROJECT_SOURCE_DIR}/ecpgen WORKING_DIRECTORY ${PROJECT
 
 file(GLOB TEMPLATE_FILES "templates/*/*.cpp")
 set(SOURCE_FILES main.cpp templates/messages/list.html.hpp models/message.cpp models/message.hpp models/user.cpp models/user.hpp controllers/messages_controller.cpp controllers/messages_controller.hpp controllers/users_controller.cpp controllers/users_controller.hpp controllers/sessions_controller.cpp controllers/sessions_controller.hpp templates/sessions/new.html.hpp
-        templates/users/new.html.hpp database/db_pool.cpp database/db_pool.hpp controllers/application_controller.cpp controllers/application_controller.hpp helpers/sessions_helper.cpp helpers/sessions_helper.hpp)
+        templates/users/new.html.hpp database/db_pool.cpp database/db_pool.hpp controllers/application_controller.cpp controllers/application_controller.hpp helpers/sessions_helper.cpp helpers/sessions_helper.hpp templates/messages/new.html.hpp utils/date.h)
 add_executable(msgboard ${SOURCE_FILES} ${TEMPLATE_FILES})
 target_link_libraries(msgboard hane uv pqxx pq cryptopp pthread)

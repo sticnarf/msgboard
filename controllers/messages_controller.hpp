@@ -11,16 +11,16 @@ class CreateMessage : public Middleware {
     MiddlewarePtr call(Request &req, std::shared_ptr<Response> &resp) override;
 };
 
-class ShowMessage : public Middleware {
-    MiddlewarePtr call(Request &req, std::shared_ptr<Response> &resp) override;
-};
+//class ShowMessage : public Middleware {
+//    MiddlewarePtr call(Request &req, std::shared_ptr<Response> &resp) override;
+//};
 
 class ListMessage : public Middleware {
     MiddlewarePtr call(Request &req, std::shared_ptr<Response> &resp) override;
 };
 
-class DeleteMessage : public Middleware {
-    MiddlewarePtr call(Request &req, std::shared_ptr<Response> &resp) override;
-};
+//class DeleteMessage : public Middleware {
+//    MiddlewarePtr call(Request &req, std::shared_ptr<Response> &resp) override;
+//};
 
 #endif

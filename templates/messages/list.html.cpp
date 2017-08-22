@@ -1,7 +1,7 @@
 #include "list.html.hpp"
 std::string MessagesListHtml::render() {
 std::string result;
-result += R"1pI7s6Xq(<!DOCTYPE HTML>
+result += R"xr5BOVmb(<!DOCTYPE HTML>
 <html>
 <head>
     <link rel="stylesheet" href="/assets/style.css">
@@ -27,31 +27,31 @@ result += R"1pI7s6Xq(<!DOCTYPE HTML>
                     <td>Row 4</td>
                 </tr>
             </table>
-            )1pI7s6Xq";
+            )xr5BOVmb";
  if (currentUser) { 
-result += R"yYfxBGAx(
+result += R"8Od0G32T(
             <p>
-                Hello, )yYfxBGAx";
+                Hello, )8Od0G32T";
 result += fmt::format("{}", currentUser->getUsername() );
-result += R"spo3YOu3(!
+result += R"aE01lTqG(!
                 <a href="/logout">Logout</a>
             </p>
-            <a href="/new" class="btn btn-primary">New message</a>
-            )spo3YOu3";
+            <a href="/messages/new" class="btn btn-primary">New message</a>
+            )aE01lTqG";
  } else { 
-result += R"oKtudDSY(
+result += R"Wkb292Fq(
             <p>
                 You are not logged in.
                 <a href="/login">Login</a>
             </p>
-            )oKtudDSY";
+            )Wkb292Fq";
  } 
-result += R"MnoMzIaD(
+result += R"lXLot9z5(
         </div>
     </div>
 </div>
 </body>
-</html>)MnoMzIaD";
+</html>)lXLot9z5";
 return result;
 }
 

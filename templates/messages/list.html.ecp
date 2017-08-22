@@ -29,7 +29,7 @@
                 Hello, <%= currentUser->getUsername() %>!
                 <a href="/logout">Logout</a>
             </p>
-            <a href="/new" class="btn btn-primary">New message</a>
+            <a href="/messages/new" class="btn btn-primary">New message</a>
             <% } else { %>
             <p>
                 You are not logged in.

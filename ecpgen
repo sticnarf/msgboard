@@ -2,6 +2,7 @@
 
 # Generate messages templates
 ecpc list.html.hpp MessagesListHtml < ./templates/messages/list.html.ecp > ./templates/messages/list.html.cpp
+ecpc new.html.hpp MessagesNewHtml < ./templates/messages/new.html.ecp > ./templates/messages/new.html.cpp
 
 # Generate sessions templates
 ecpc new.html.hpp SessionsNewHtml < ./templates/sessions/new.html.ecp > ./templates/sessions/new.html.cpp

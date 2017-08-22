@@ -3,23 +3,28 @@
 
 #include <string>
 #include <chrono>
+#include <memory>
+#include "user.hpp"
+
+class Message;
+
+typedef std::shared_ptr<Message> MessagePtr;
 
 class Message {
 private:
     int id;
-    int authorId;
+    UserPtr author;
     std::string content;
     std::chrono::system_clock::time_point createdAt;
+
 public:
-    Message(int id, int authorId, const std::string &content, const std::chrono::system_clock::time_point &createdAt);
+    Message() = default;
+
+    Message(UserPtr author, const std::string &content);
 
     int getId() const;
 
-    void setId(int id);
-
-    int getAuthorId() const;
-
-    void setAuthorId(int authorId);
+    const UserPtr &getAuthor() const;
 
     const std::string &getContent() const;
 
@@ -28,6 +33,8 @@ public:
     const std::chrono::system_clock::time_point &getCreatedAt() const;
 
     void setCreatedAt(const std::chrono::system_clock::time_point &createdAt);
+
+    bool save();
 };
 
 #endif

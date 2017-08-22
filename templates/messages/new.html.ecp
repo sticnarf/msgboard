@@ -1,7 +1,4 @@
-#include "new.html.hpp"
-std::string SessionsNewHtml::render() {
-std::string result;
-result += R"TfOfBWbN(<!DOCTYPE HTML>
+<!DOCTYPE HTML>
 <html>
 <head>
     <link rel="stylesheet" href="/assets/style.css">
@@ -15,38 +12,24 @@ result += R"TfOfBWbN(<!DOCTYPE HTML>
 <div class="container">
     <div class="row">
         <div class="col-xs-12 col-md-4 col-md-offset-4">
-            <h1>Login</h1>
-            )TfOfBWbN";
- for (auto &message : errorMessages) { 
-result += R"hXCLCxyc(
+            <h1>New message</h1>
+            <% for (auto &message : errorMessages) { %>
             <div class="alert alert-danger" role="alert">
                 <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                 <span class="sr-only">Error:</span>
-                )hXCLCxyc";
-result += fmt::format("{}", message );
-result += R"dvr8WEr9(
+                <%= message %>
             </div>
-            )dvr8WEr9";
- } 
-result += R"HYYQywWL(
-            <form class="main-table" action="/login" method="post">
+            <% } %>
+            <form class="main-table" id="new_message" action="/messages/" method="post">
                 <div class="form-group">
-                    <label for="username">Username</label>
-                    <input class="form-control" id="username" name="username">
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password" name="password">
+                    <label for="content">Content</label>
+                    <textarea class="form-control" id="content" name="content" row="3" form="new_message"></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
-                <a href="/users/new">No account?</a>
             </form>
             <p><a href="/">Back to home</a></p>
         </div>
     </div>
 </div>
 </body>
-</html>)HYYQywWL";
-return result;
-}
-
+</html>

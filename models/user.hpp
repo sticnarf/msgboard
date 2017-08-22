@@ -16,6 +16,10 @@ private:
     std::string passwordSalt;
     std::string passwordDigest;
     std::chrono::system_clock::time_point createdAt;
+public:
+    int getId() const;
+
+private:
 
     void setPassword(const std::string &password);
 

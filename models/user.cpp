@@ -122,3 +122,7 @@ bool User::save() {
 const std::string &User::getUsername() const {
     return username;
 }
+
+int User::getId() const {
+    return id;
+}

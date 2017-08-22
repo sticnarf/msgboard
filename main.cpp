@@ -30,6 +30,9 @@ int main() {
     route->addRule(std::regex("/users/new"), HttpMethod::METHOD_GET, std::make_shared<NewUser>());
     route->addRule(std::regex("/users/{0,1}"), HttpMethod::METHOD_POST, std::make_shared<CreateUser>());
 
+    route->addRule(std::regex("/messages/new"), HttpMethod::METHOD_GET, std::make_shared<NewMessage>());
+    route->addRule(std::regex("/messages/{0,1}"), HttpMethod::METHOD_POST, std::make_shared<CreateMessage>());
+
     auto session = std::make_shared<SessionMiddleware>(route);
 
     HttpServer server(session, "0.0.0.0", 8089);
