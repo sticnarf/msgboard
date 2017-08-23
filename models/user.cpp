@@ -114,6 +114,9 @@ bool User::save() {
 
         txn.commit();
         pool.returnConnection(conn);
+
+        auto newUser = getByUsername(username);
+        this->id = newUser->id;
         return true;
     } catch (const std::exception &e) {
         Logger::getInstance().error("User::save error: {}", e.what());
@@ -132,16 +135,4 @@ int User::getId() const {
 
 void User::setUsername(const std::string &username) {
     User::username = username;
-}
-
-void User::setPasswordSalt(const std::string &passwordSalt) {
-    User::passwordSalt = passwordSalt;
-}
-
-void User::setPasswordDigest(const std::string &passwordDigest) {
-    User::passwordDigest = passwordDigest;
-}
-
-void User::setCreatedAt(const std::chrono::system_clock::time_point &createdAt) {
-    User::createdAt = createdAt;
 }

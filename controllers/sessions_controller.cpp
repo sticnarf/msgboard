@@ -10,7 +10,7 @@ MiddlewarePtr NewSession::call(Request &req, std::shared_ptr<Response> &resp) {
 
 MiddlewarePtr DeleteSession::call(Request &req, std::shared_ptr<Response> &resp) {
     SessionsHelper::logoutUser(req);
-    resp->setStatusCode(StatusCode::HTTP_MOVED_PERMANENTLY);
+    resp->setStatusCode(StatusCode::HTTP_SEE_OTHER);
     resp->headers.put("Location", std::make_shared<HeaderContent>("/"));
     return nullptr;
 }

@@ -71,7 +71,7 @@ std::vector<MessagePtr> Message::getAll() {
         pqxx::result r = txn.exec(
                 "SELECT messages.content, messages.created_at, users.username "
                         "FROM messages LEFT JOIN users ON messages.user_id = users.id "
-                        "ORDER BY messages.created_at DESC");
+                        "ORDER BY messages.created_at DESC LIMIT 10");
 
         auto num = r.size();
         std::vector<MessagePtr> v;
