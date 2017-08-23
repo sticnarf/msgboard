@@ -5,7 +5,7 @@ services:
   msgboard:
     build: .
     ports:
-      - "80:8089"
+      - "18089:8089"
     volumes:
       - /var/log:/var/log
     depends_on:
