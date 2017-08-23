@@ -1,9 +1,10 @@
 #include "new.html.hpp"
 std::string SessionsNewHtml::render() {
 std::string result;
-result += R"OY0om4Hu(<!DOCTYPE HTML>
+result += R"fDYAslim(<!DOCTYPE HTML>
 <html>
 <head>
+    <meta charset="utf-8">
     <link rel="stylesheet" href="/assets/style.css">
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -16,19 +17,19 @@ result += R"OY0om4Hu(<!DOCTYPE HTML>
     <div class="row">
         <div class="col-xs-12 col-md-4 col-md-offset-4">
             <h1>Login</h1>
-            )OY0om4Hu";
+            )fDYAslim";
  for (auto &message : errorMessages) { 
-result += R"BBigsxZq(
+result += R"2FzLNsYQ(
             <div class="alert alert-danger" role="alert">
                 <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                 <span class="sr-only">Error:</span>
-                )BBigsxZq";
+                )2FzLNsYQ";
 result += fmt::format("{}", message );
-result += R"YeTfJU6i(
+result += R"VnmFnW6r(
             </div>
-            )YeTfJU6i";
+            )VnmFnW6r";
  } 
-result += R"ITovCofu(
+result += R"NEx4MN41(
             <form class="main-table" action="/login" method="post">
                 <div class="form-group">
                     <label for="username">Username</label>
@@ -46,7 +47,7 @@ result += R"ITovCofu(
     </div>
 </div>
 </body>
-</html>)ITovCofu";
+</html>)NEx4MN41";
 return result;
 }
 

@@ -11,4 +11,4 @@ services:
     depends_on:
       - db
     environment:
-      - PQ_CONN=host=db dbname=msgboard user=postgres
+      - PQ_CONN=host=db dbname=msgboard user=postgres client_encoding=utf-8

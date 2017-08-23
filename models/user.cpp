@@ -108,6 +108,7 @@ bool User::save() {
 
     try {
         pqxx::work txn(*conn);
+
         txn.exec("INSERT INTO users (username, password_digest, salt) VALUES ("
                  + txn.quote(username) + "," + txn.quote(passwordDigest) + ","
                  + txn.quote(passwordSalt) + ")");
