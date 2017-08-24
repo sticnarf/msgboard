@@ -1,14 +1,27 @@
 #ifndef MSGBOARD_APPLICATION_CONTROLLER_HPP
 #define MSGBOARD_APPLICATION_CONTROLLER_HPP
 
-#include <hane/middlewares/middleware.hpp>
+#include <hane/hane.hpp>
 
-class ForceLoggedIn : public Middleware {
+class ForceLoggedIn : public SimpleMiddleware {
+public:
+    ForceLoggedIn(const MiddlewarePtr &nextMiddleware);
 
+public:
+    void process(Request &req, std::shared_ptr<Response> &resp) override;
 };
 
-class ForceLoggedOut : public Middleware {
+class ForceLoggedOut : public SimpleMiddleware {
+public:
+    ForceLoggedOut(const MiddlewarePtr &nextMiddleware);
 
+public:
+    void process(Request &req, std::shared_ptr<Response> &resp) override;
+};
+
+class AssetsMiddleware : public Middleware {
+public:
+    MiddlewarePtr call(Request &req, std::shared_ptr<Response> &resp) override;
 };
 
 #endif
