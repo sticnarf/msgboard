@@ -2,6 +2,8 @@ version: '3'
 services:
   db:
     build: pg_docker/
+    volumes:
+      - msgboard_pgdata:/var/lib/postgresql/data
   msgboard:
     build: .
     ports:
