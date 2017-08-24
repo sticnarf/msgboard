@@ -2,8 +2,6 @@ FROM libhane
 
 LABEL maintainer="sticnarf@gmail.com"
 
-RUN timedatectl set-timezone Asia/Shanghai
-
 RUN apt-get update && apt-get install -y libpqxx-dev libcrypto++-dev
 
 WORKDIR /work
