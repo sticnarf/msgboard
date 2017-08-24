@@ -31,7 +31,7 @@ int main() {
     route->addRule(std::regex("/messages/new"),
                    HttpMethod::METHOD_GET, std::make_shared<ForceLoggedIn>(std::make_shared<NewMessage>()));
     route->addRule(std::regex("/messages/{0,1}"),
-                   HttpMethod::METHOD_GET, std::make_shared<ForceLoggedIn>(std::make_shared<CreateMessage>()));
+                   HttpMethod::METHOD_POST, std::make_shared<ForceLoggedIn>(std::make_shared<CreateMessage>()));
 
     auto session = std::make_shared<SessionMiddleware>(route);
 

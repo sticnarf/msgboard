@@ -6,22 +6,23 @@ MiddlewarePtr AssetsMiddleware::call(Request &req, std::shared_ptr<Response> &re
     return sm->call(req, resp);
 }
 
-ForceLoggedIn::ForceLoggedIn(const MiddlewarePtr &nextMiddleware) : SimpleMiddleware(nextMiddleware) {}
-
-void ForceLoggedIn::process(Request &req, std::shared_ptr<Response> &resp) {
+MiddlewarePtr ForceLoggedIn::call(Request &req, std::shared_ptr<Response> &resp) {
     if (SessionsHelper::currentUser(req) == nullptr) {
         resp->setStatusCode(StatusCode::HTTP_SEE_OTHER);
         resp->headers.put("Location", std::make_shared<HeaderContent>("/login"));
-        this->nextMiddleware = nullptr;
+        return nullptr;
     }
+    return nextMiddleware->call(req, resp);
 }
 
-ForceLoggedOut::ForceLoggedOut(const MiddlewarePtr &nextMiddleware) : SimpleMiddleware(nextMiddleware) {}
+ForceLoggedIn::ForceLoggedIn(const MiddlewarePtr &nextMiddleware) : SimpleMiddleware(nextMiddleware) {}
 
-void ForceLoggedOut::process(Request &req, std::shared_ptr<Response> &resp) {
+MiddlewarePtr ForceLoggedOut::call(Request &req, std::shared_ptr<Response> &resp) {
     if (SessionsHelper::currentUser(req) != nullptr) {
         resp->setStatusCode(StatusCode::HTTP_SEE_OTHER);
         resp->headers.put("Location", std::make_shared<HeaderContent>("/"));
-        this->nextMiddleware = nullptr;
     }
+    return nextMiddleware->call(req, resp);
 }
+
+ForceLoggedOut::ForceLoggedOut(const MiddlewarePtr &nextMiddleware) : SimpleMiddleware(nextMiddleware) {}

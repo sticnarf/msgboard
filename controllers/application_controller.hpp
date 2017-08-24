@@ -7,16 +7,14 @@ class ForceLoggedIn : public SimpleMiddleware {
 public:
     ForceLoggedIn(const MiddlewarePtr &nextMiddleware);
 
-public:
-    void process(Request &req, std::shared_ptr<Response> &resp) override;
+    MiddlewarePtr call(Request &req, std::shared_ptr<Response> &resp) override;
 };
 
 class ForceLoggedOut : public SimpleMiddleware {
 public:
     ForceLoggedOut(const MiddlewarePtr &nextMiddleware);
 
-public:
-    void process(Request &req, std::shared_ptr<Response> &resp) override;
+    MiddlewarePtr call(Request &req, std::shared_ptr<Response> &resp) override;
 };
 
 class AssetsMiddleware : public Middleware {

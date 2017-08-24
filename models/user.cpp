@@ -6,7 +6,6 @@
 #include <cryptopp/base64.h>
 #include <cryptopp/sha.h>
 #include <hane/hane.hpp>
-#include <iostream>
 
 User::User(const std::string &username, const std::string &password)
         : username(username) {
@@ -59,8 +58,10 @@ UserPtr User::getById(int id) {
         pqxx::work txn(*conn);
         pqxx::result r = txn.exec("SELECT username, password_digest, salt FROM users WHERE id=" + txn.quote(id));
 
-        if (r.size() == 0)
+        if (r.size() == 0){
+            pool.returnConnection(conn);
             return nullptr;
+        }
 
         auto res = std::make_shared<User>();
         res->id = id;
@@ -85,8 +86,10 @@ UserPtr User::getByUsername(const std::string &username) {
         pqxx::result r = txn.exec("SELECT id, password_digest, salt "
                                           "FROM users WHERE username=" + txn.quote(username));
 
-        if (r.size() == 0)
+        if (r.size() == 0){
+            pool.returnConnection(conn);
             return nullptr;
+        }
 
         auto res = std::make_shared<User>();
         res->id = r[0][0].as<int>();

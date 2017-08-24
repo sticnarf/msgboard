@@ -25,6 +25,7 @@ pqxx::connection *DBPool::borrowConnection() {
 }
 
 void DBPool::returnConnection(pqxx::connection *conn) {
+    std::lock_guard<std::mutex> poolLock(poolMutex);
     {
         std::lock_guard<std::mutex> lock(returnMutex);
         freeConnections.push_back(conn);
