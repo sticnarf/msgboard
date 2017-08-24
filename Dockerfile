@@ -2,8 +2,7 @@ FROM libhane
 
 LABEL maintainer="sticnarf@gmail.com"
 
-RUN echo "Asia/Shanghai" > /etc/timezone
-RUN dpkg-reconfigure -f noninteractive tzdata
+RUN timedatectl set-timezone Asia/Shanghai
 
 RUN apt-get update && apt-get install -y libpqxx-dev libcrypto++-dev
 
