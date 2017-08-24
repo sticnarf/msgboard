@@ -1,7 +1,7 @@
 #include "new.html.hpp"
 std::string SessionsNewHtml::render() {
 std::string result;
-result += R"fDYAslim(<!DOCTYPE HTML>
+result += R"DHxyY7rw(<!DOCTYPE HTML>
 <html>
 <head>
     <meta charset="utf-8">
@@ -17,19 +17,19 @@ result += R"fDYAslim(<!DOCTYPE HTML>
     <div class="row">
         <div class="col-xs-12 col-md-4 col-md-offset-4">
             <h1>Login</h1>
-            )fDYAslim";
+            )DHxyY7rw";
  for (auto &message : errorMessages) { 
-result += R"2FzLNsYQ(
+result += R"Ni5zhQdd(
             <div class="alert alert-danger" role="alert">
                 <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                 <span class="sr-only">Error:</span>
-                )2FzLNsYQ";
+                )Ni5zhQdd";
 result += fmt::format("{}", message );
-result += R"VnmFnW6r(
+result += R"N16uqVux(
             </div>
-            )VnmFnW6r";
+            )N16uqVux";
  } 
-result += R"NEx4MN41(
+result += R"7mn1M59Q(
             <form class="main-table" action="/login" method="post">
                 <div class="form-group">
                     <label for="username">Username</label>
@@ -47,7 +47,7 @@ result += R"NEx4MN41(
     </div>
 </div>
 </body>
-</html>)NEx4MN41";
+</html>)7mn1M59Q";
 return result;
 }
 

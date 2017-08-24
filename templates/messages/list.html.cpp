@@ -1,7 +1,7 @@
 #include "list.html.hpp"
 std::string MessagesListHtml::render() {
 std::string result;
-result += R"TAmnqbJB(<!DOCTYPE HTML>
+result += R"opwKlUOh(<!DOCTYPE HTML>
 <html>
 <head>
     <meta charset="utf-8">
@@ -15,51 +15,51 @@ result += R"TAmnqbJB(<!DOCTYPE HTML>
         <div class="col-xs-12 col-md-4 col-md-offset-4">
             <h1>Message board</h1>
             <table class="table table-bordered table-striped main-table">
-                )TAmnqbJB";
+                )opwKlUOh";
  for (auto message : messages) { 
-result += R"cnIKDl36(
+result += R"ozs9YcUd(
                 <tr><td>
-                <div class="author-name">)cnIKDl36";
+                <div class="author-name">)ozs9YcUd";
 result += fmt::format("{}", message->getAuthor()->getUsername() );
-result += R"Se9TteQ4(:</div>
+result += R"TCBGTjbT(:</div>
                 <p class="message-content">
-                    )Se9TteQ4";
+                    )TCBGTjbT";
 result += fmt::format("{}", message->getContent() );
-result += R"UXQjqCiU(
+result += R"JqIDMg2e(
                 </p>
-                <small class="message-time text-right">)UXQjqCiU";
+                <small class="message-time text-right">)JqIDMg2e";
 result += fmt::format("{}", message->getFriendlyCreatedAt() );
-result += R"4tCcZU8B(</small>
+result += R"3fSSNyYm(</small>
                 </td></tr>
-                )4tCcZU8B";
+                )3fSSNyYm";
  } 
-result += R"T2OjizFH(
+result += R"yc8AhRjR(
             </table>
-            )T2OjizFH";
+            )yc8AhRjR";
  if (currentUser) { 
-result += R"4EiCQ1yy(
+result += R"xmr3OHiZ(
             <p>
-                Hello, )4EiCQ1yy";
+                Hello, )xmr3OHiZ";
 result += fmt::format("{}", currentUser->getUsername() );
-result += R"vMBgiItb(!
+result += R"mYaFhBuD(!
                 <a href="/logout">Logout</a>
             </p>
             <a href="/messages/new" class="btn btn-primary">New message</a>
-            )vMBgiItb";
+            )mYaFhBuD";
  } else { 
-result += R"EEXVJyEl(
+result += R"bGh2wHyn(
             <p>
                 You are not logged in.
                 <a href="/login">Login</a>
             </p>
-            )EEXVJyEl";
+            )bGh2wHyn";
  } 
-result += R"Ub3uwnHJ(
+result += R"fEVHh0xe(
         </div>
     </div>
 </div>
 </body>
-</html>)Ub3uwnHJ";
+</html>)fEVHh0xe";
 return result;
 }
 

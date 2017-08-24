@@ -3,6 +3,7 @@
 
 #include <hane/hane.hpp>
 #include <vector>
+#include "../../helpers/application_helper.hpp"
 #include "../../models/message.hpp"
 #include "../../models/user.hpp"
 

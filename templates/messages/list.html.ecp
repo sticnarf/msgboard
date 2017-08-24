@@ -14,9 +14,9 @@
             <table class="table table-bordered table-striped main-table">
                 <% for (auto message : messages) { %>
                 <tr><td>
-                <div class="author-name"><%= message->getAuthor()->getUsername() %>:</div>
+                <div class="author-name"><%= ApplicationHelper::escapeString(message->getAuthor()->getUsername()) %>:</div>
                 <p class="message-content">
-                    <%= message->getContent() %>
+                    <%= ApplicationHelper::escapeString(message->getContent()) %>
                 </p>
                 <small class="message-time text-right"><%= message->getFriendlyCreatedAt() %></small>
                 </td></tr>
@@ -24,7 +24,7 @@
             </table>
             <% if (currentUser) { %>
             <p>
-                Hello, <%= currentUser->getUsername() %>!
+                Hello, <%= ApplicationHelper::escapeString(currentUser->getUsername()) %>!
                 <a href="/logout">Logout</a>
             </p>
             <a href="/messages/new" class="btn btn-primary">New message</a>
