@@ -3,7 +3,7 @@ services:
   db:
     build: pg_docker/
     volumes:
-      - msgboard_pgdata:/var/lib/postgresql/data
+      - msgboard_data:/var/lib/postgresql/data
   msgboard:
     build: .
     ports:
@@ -14,3 +14,6 @@ services:
       - db
     environment:
       - PQ_CONN=host=db dbname=msgboard user=postgres client_encoding=utf-8
+
+volumes:
+  msgboard_data:
