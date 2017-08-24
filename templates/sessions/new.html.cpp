@@ -1,7 +1,8 @@
 #include "new.html.hpp"
+
 std::string SessionsNewHtml::render() {
-std::string result;
-result += R"X3wCGfYT(<!DOCTYPE HTML>
+    std::string result;
+    result += R"X3wCGfYT(<!DOCTYPE HTML>
 <html>
 <head>
     <meta charset="utf-8">
@@ -19,18 +20,18 @@ result += R"X3wCGfYT(<!DOCTYPE HTML>
         <div class="col-xs-12 col-md-4 col-md-offset-4">
             <h1>Login</h1>
             )X3wCGfYT";
- for (auto &message : errorMessages) { 
-result += R"evYcMcf3(
+    for (auto &message : errorMessages) {
+        result += R"evYcMcf3(
             <div class="alert alert-danger" role="alert">
                 <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                 <span class="sr-only">Error:</span>
                 )evYcMcf3";
-result += fmt::format("{}", message );
-result += R"NCdmGbL6(
+        result += fmt::format("{}", message);
+        result += R"NCdmGbL6(
             </div>
             )NCdmGbL6";
- } 
-result += R"S3IvBTHx(
+    }
+    result += R"S3IvBTHx(
             <form class="main-table" action="/login" method="post">
                 <div class="form-group">
                     <label for="username">Username</label>
@@ -49,6 +50,6 @@ result += R"S3IvBTHx(
 </div>
 </body>
 </html>)S3IvBTHx";
-return result;
+    return result;
 }
 

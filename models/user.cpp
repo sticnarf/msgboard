@@ -58,7 +58,7 @@ UserPtr User::getById(int id) {
         pqxx::work txn(*conn);
         pqxx::result r = txn.exec("SELECT username, password_digest, salt FROM users WHERE id=" + txn.quote(id));
 
-        if (r.size() == 0){
+        if (r.size() == 0) {
             pool.returnConnection(conn);
             return nullptr;
         }
@@ -86,7 +86,7 @@ UserPtr User::getByUsername(const std::string &username) {
         pqxx::result r = txn.exec("SELECT id, password_digest, salt "
                                           "FROM users WHERE username=" + txn.quote(username));
 
-        if (r.size() == 0){
+        if (r.size() == 0) {
             pool.returnConnection(conn);
             return nullptr;
         }

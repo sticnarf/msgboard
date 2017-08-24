@@ -1,5 +1,6 @@
 #ifndef MSGBOARD_USERS_CONTROLLER_HPP
 #define MSGBOARD_USERS_CONTROLLER_HPP
+
 #include <hane/hane.hpp>
 
 class NewUser : public Middleware {

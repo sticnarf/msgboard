@@ -1,5 +1,6 @@
 #ifndef MSGBOARD_SESSION_CONTROLLER_HPP
 #define MSGBOARD_SESSION_CONTROLLER_HPP
+
 #include <hane/hane.hpp>
 
 class NewSession : public Middleware {
