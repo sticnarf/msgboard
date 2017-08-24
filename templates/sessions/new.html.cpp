@@ -1,10 +1,11 @@
 #include "new.html.hpp"
 std::string SessionsNewHtml::render() {
 std::string result;
-result += R"DHxyY7rw(<!DOCTYPE HTML>
+result += R"X3wCGfYT(<!DOCTYPE HTML>
 <html>
 <head>
     <meta charset="utf-8">
+    <title>Login</title>
     <link rel="stylesheet" href="/assets/style.css">
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -17,19 +18,19 @@ result += R"DHxyY7rw(<!DOCTYPE HTML>
     <div class="row">
         <div class="col-xs-12 col-md-4 col-md-offset-4">
             <h1>Login</h1>
-            )DHxyY7rw";
+            )X3wCGfYT";
  for (auto &message : errorMessages) { 
-result += R"Ni5zhQdd(
+result += R"evYcMcf3(
             <div class="alert alert-danger" role="alert">
                 <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                 <span class="sr-only">Error:</span>
-                )Ni5zhQdd";
+                )evYcMcf3";
 result += fmt::format("{}", message );
-result += R"N16uqVux(
+result += R"NCdmGbL6(
             </div>
-            )N16uqVux";
+            )NCdmGbL6";
  } 
-result += R"7mn1M59Q(
+result += R"S3IvBTHx(
             <form class="main-table" action="/login" method="post">
                 <div class="form-group">
                     <label for="username">Username</label>
@@ -47,7 +48,7 @@ result += R"7mn1M59Q(
     </div>
 </div>
 </body>
-</html>)7mn1M59Q";
+</html>)S3IvBTHx";
 return result;
 }
 

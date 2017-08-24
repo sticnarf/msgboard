@@ -3,26 +3,26 @@
 #include "../helpers/sessions_helper.hpp"
 #include "../templates/messages/new.html.hpp"
 
-MiddlewarePtr NewMessage::call(Request &req, std::shared_ptr<Response> &resp) {
+MiddlewarePtr NewMessage::call(RequestPtr req, std::shared_ptr<Response> &resp) {
     resp->body = MessagesNewHtml().render();
     return nullptr;
 }
 
-//MiddlewarePtr ShowMessage::call(Request &req, std::shared_ptr<Response> &resp) {
+//MiddlewarePtr ShowMessage::call(RequestPtr req, std::shared_ptr<Response> &resp) {
 //    return nullptr;
 //}
 
-MiddlewarePtr ListMessage::call(Request &req, std::shared_ptr<Response> &resp) {
+MiddlewarePtr ListMessage::call(RequestPtr req, std::shared_ptr<Response> &resp) {
     resp->body = MessagesListHtml(Message::getAll(), SessionsHelper::currentUser(req)).render();
     return nullptr;
 }
 
-//MiddlewarePtr DeleteMessage::call(Request &req, std::shared_ptr<Response> &resp) {
+//MiddlewarePtr DeleteMessage::call(RequestPtr req, std::shared_ptr<Response> &resp) {
 //    return nullptr;
 //}
 
-MiddlewarePtr CreateMessage::call(Request &req, std::shared_ptr<Response> &resp) {
-    auto queries = req.getQueries();
+MiddlewarePtr CreateMessage::call(RequestPtr req, std::shared_ptr<Response> &resp) {
+    auto queries = req->getQueries();
 
     auto contentEntry = queries.find("content");
 

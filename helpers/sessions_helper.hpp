@@ -6,11 +6,11 @@
 
 class SessionsHelper {
 public:
-    static UserPtr currentUser(Request &req);
+    static UserPtr currentUser(RequestPtr req);
 
-    static void loginUser(UserPtr user, Request &req);
+    static void loginUser(UserPtr user, RequestPtr req);
 
-    static void logoutUser(Request &req);
+    static void logoutUser(RequestPtr req);
 };
 
 #endif

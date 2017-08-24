@@ -1,10 +1,11 @@
 #include "list.html.hpp"
 std::string MessagesListHtml::render() {
 std::string result;
-result += R"opwKlUOh(<!DOCTYPE HTML>
+result += R"DWeYGEWC(<!DOCTYPE HTML>
 <html>
 <head>
     <meta charset="utf-8">
+    <title>Message board</title>
     <link rel="stylesheet" href="/assets/style.css">
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -15,51 +16,51 @@ result += R"opwKlUOh(<!DOCTYPE HTML>
         <div class="col-xs-12 col-md-4 col-md-offset-4">
             <h1>Message board</h1>
             <table class="table table-bordered table-striped main-table">
-                )opwKlUOh";
+                )DWeYGEWC";
  for (auto message : messages) { 
-result += R"ozs9YcUd(
+result += R"5L8Ytj2U(
                 <tr><td>
-                <div class="author-name">)ozs9YcUd";
-result += fmt::format("{}", message->getAuthor()->getUsername() );
-result += R"TCBGTjbT(:</div>
+                <div class="author-name">)5L8Ytj2U";
+result += fmt::format("{}", ApplicationHelper::escapeString(message->getAuthor()->getUsername()) );
+result += R"AlMcJVC8(:</div>
                 <p class="message-content">
-                    )TCBGTjbT";
-result += fmt::format("{}", message->getContent() );
-result += R"JqIDMg2e(
+                    )AlMcJVC8";
+result += fmt::format("{}", ApplicationHelper::escapeString(message->getContent()) );
+result += R"OyKn988N(
                 </p>
-                <small class="message-time text-right">)JqIDMg2e";
+                <small class="message-time text-right">)OyKn988N";
 result += fmt::format("{}", message->getFriendlyCreatedAt() );
-result += R"3fSSNyYm(</small>
+result += R"K9r504Hi(</small>
                 </td></tr>
-                )3fSSNyYm";
+                )K9r504Hi";
  } 
-result += R"yc8AhRjR(
+result += R"vLuvmxEM(
             </table>
-            )yc8AhRjR";
+            )vLuvmxEM";
  if (currentUser) { 
-result += R"xmr3OHiZ(
+result += R"7Q8MfUNt(
             <p>
-                Hello, )xmr3OHiZ";
-result += fmt::format("{}", currentUser->getUsername() );
-result += R"mYaFhBuD(!
+                Hello, )7Q8MfUNt";
+result += fmt::format("{}", ApplicationHelper::escapeString(currentUser->getUsername()) );
+result += R"p3hK4dQE(!
                 <a href="/logout">Logout</a>
             </p>
             <a href="/messages/new" class="btn btn-primary">New message</a>
-            )mYaFhBuD";
+            )p3hK4dQE";
  } else { 
-result += R"bGh2wHyn(
+result += R"LfUYElIt(
             <p>
                 You are not logged in.
                 <a href="/login">Login</a>
             </p>
-            )bGh2wHyn";
+            )LfUYElIt";
  } 
-result += R"fEVHh0xe(
+result += R"jXTuFMW2(
         </div>
     </div>
 </div>
 </body>
-</html>)fEVHh0xe";
+</html>)jXTuFMW2";
 return result;
 }
 

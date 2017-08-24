@@ -3,15 +3,15 @@
 #include <hane/hane.hpp>
 
 class NewUser : public Middleware {
-    MiddlewarePtr call(Request &req, std::shared_ptr<Response> &resp) override;
+    MiddlewarePtr call(RequestPtr req, std::shared_ptr<Response> &resp) override;
 };
 
 class CreateUser : public Middleware {
-    MiddlewarePtr call(Request &req, std::shared_ptr<Response> &resp) override;
+    MiddlewarePtr call(RequestPtr req, std::shared_ptr<Response> &resp) override;
 };
 
 class ShowUser : public Middleware {
-    MiddlewarePtr call(Request &req, std::shared_ptr<Response> &resp) override;
+    MiddlewarePtr call(RequestPtr req, std::shared_ptr<Response> &resp) override;
 };
 
 #endif

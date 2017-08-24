@@ -4,13 +4,13 @@
 #include "../helpers/sessions_helper.hpp"
 #include <vector>
 
-MiddlewarePtr NewUser::call(Request &req, std::shared_ptr<Response> &resp) {
+MiddlewarePtr NewUser::call(RequestPtr req, std::shared_ptr<Response> &resp) {
     resp->body = UsersNewHtml().render();
     return nullptr;
 }
 
-MiddlewarePtr CreateUser::call(Request &req, std::shared_ptr<Response> &resp) {
-    auto queries = req.getQueries();
+MiddlewarePtr CreateUser::call(RequestPtr req, std::shared_ptr<Response> &resp) {
+    auto queries = req->getQueries();
 
     auto usernameEntry = queries.find("username");
     auto passwordEntry = queries.find("password");
@@ -61,6 +61,6 @@ MiddlewarePtr CreateUser::call(Request &req, std::shared_ptr<Response> &resp) {
     return nullptr;
 }
 
-MiddlewarePtr ShowUser::call(Request &req, std::shared_ptr<Response> &resp) {
+MiddlewarePtr ShowUser::call(RequestPtr req, std::shared_ptr<Response> &resp) {
     return nullptr;
 }
