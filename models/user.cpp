@@ -51,7 +51,6 @@ std::string User::generatePasswordDigest(const std::string &password) {
 }
 
 UserPtr User::getById(int id) {
-    auto &pool = DBPool::getInstance();
     DBConnection conn;
 
     try {
@@ -74,7 +73,6 @@ UserPtr User::getById(int id) {
 }
 
 UserPtr User::getByUsername(const std::string &username) {
-    auto &pool = DBPool::getInstance();
     DBConnection conn;
 
     try {
@@ -98,7 +96,6 @@ UserPtr User::getByUsername(const std::string &username) {
 }
 
 bool User::save() {
-    auto &pool = DBPool::getInstance();
     DBConnection conn;
 
     try {

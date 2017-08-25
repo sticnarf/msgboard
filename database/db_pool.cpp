@@ -10,7 +10,7 @@ DBPool::DBPool(int poolSize) {
     char *connStr = std::getenv("PQ_CONN");
 
     for (int i = 0; i < poolSize; i++) {
-        freeConnections.push_back(new pqxx::connection(connStr));
+        freeConnections.push(new pqxx::connection(connStr));
     }
 }
 
@@ -19,8 +19,8 @@ pqxx::connection *DBPool::borrowConnection() {
     returnCv.wait(lock, [&] { return !freeConnections.empty(); });
 
     std::lock_guard<std::mutex> poolLock(poolMutex);
-    auto conn = freeConnections.back();
-    freeConnections.pop_back();
+    auto conn = freeConnections.front();
+    freeConnections.pop();
     return conn;
 }
 
@@ -28,7 +28,7 @@ void DBPool::returnConnection(pqxx::connection *conn) {
     std::lock_guard<std::mutex> poolLock(poolMutex);
     {
         std::lock_guard<std::mutex> lock(returnMutex);
-        freeConnections.push_back(conn);
+        freeConnections.push(conn);
     }
     returnCv.notify_one();
 }

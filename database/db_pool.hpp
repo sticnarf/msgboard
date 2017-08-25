@@ -1,13 +1,13 @@
 #ifndef MSGBOARD_DB_POOL_HPP
 #define MSGBOARD_DB_POOL_HPP
 
-#include <vector>
+#include <queue>
 #include <pqxx/pqxx>
 #include <mutex>
 #include <condition_variable>
 
 class DBPool {
-    std::vector<pqxx::connection *> freeConnections;
+    std::queue<pqxx::connection *> freeConnections;
 
     std::mutex poolMutex;
     std::mutex returnMutex;

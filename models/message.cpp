@@ -38,7 +38,6 @@ Message::Message(UserPtr author, const std::string &content) :
 }
 
 bool Message::save() {
-    auto &pool = DBPool::getInstance();
     DBConnection conn;
 
     try {
@@ -60,7 +59,6 @@ bool Message::save() {
 }
 
 std::vector<MessagePtr> Message::getAll() {
-    auto &pool = DBPool::getInstance();
     DBConnection conn;
 
     try {
