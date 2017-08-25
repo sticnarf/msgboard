@@ -1,8 +1,7 @@
 #include "list.html.hpp"
-
 std::string MessagesListHtml::render() {
-    std::string result;
-    result += R"DWeYGEWC(<!DOCTYPE HTML>
+std::string result;
+result += R"OVcw1Hgc(<!DOCTYPE HTML>
 <html>
 <head>
     <meta charset="utf-8">
@@ -17,51 +16,51 @@ std::string MessagesListHtml::render() {
         <div class="col-xs-12 col-md-4 col-md-offset-4">
             <h1>Message board</h1>
             <table class="table table-bordered table-striped main-table">
-                )DWeYGEWC";
-    for (auto message : messages) {
-        result += R"5L8Ytj2U(
+                )OVcw1Hgc";
+ for (auto message : messages) { 
+result += R"szTcSuEt(
                 <tr><td>
-                <div class="author-name">)5L8Ytj2U";
-        result += fmt::format("{}", ApplicationHelper::escapeString(message->getAuthor()->getUsername()));
-        result += R"AlMcJVC8(:</div>
+                <div class="author-name">)szTcSuEt";
+result += fmt::format("{}", ApplicationHelper::escapeString(message->getAuthor()->getUsername()) );
+result += R"fhT2A9Fg(:</div>
                 <p class="message-content">
-                    )AlMcJVC8";
-        result += fmt::format("{}", ApplicationHelper::escapeString(message->getContent()));
-        result += R"OyKn988N(
+                    )fhT2A9Fg";
+result += fmt::format("{}", ApplicationHelper::escapeString(message->getContent()) );
+result += R"6VSnVm8K(
                 </p>
-                <small class="message-time text-right">)OyKn988N";
-        result += fmt::format("{}", message->getFriendlyCreatedAt());
-        result += R"K9r504Hi(</small>
+                <small class="message-time text-right">)6VSnVm8K";
+result += fmt::format("{}", message->getFriendlyCreatedAt() );
+result += R"zCsrx1eg(</small>
                 </td></tr>
-                )K9r504Hi";
-    }
-    result += R"vLuvmxEM(
+                )zCsrx1eg";
+ } 
+result += R"09qz1w5Q(
             </table>
-            )vLuvmxEM";
-    if (currentUser) {
-        result += R"7Q8MfUNt(
+            )09qz1w5Q";
+ if (currentUser) { 
+result += R"POZPMDhA(
             <p>
-                Hello, )7Q8MfUNt";
-        result += fmt::format("{}", ApplicationHelper::escapeString(currentUser->getUsername()));
-        result += R"p3hK4dQE(!
+                Hello, )POZPMDhA";
+result += fmt::format("{}", ApplicationHelper::escapeString(currentUser->getUsername()) );
+result += R"q5JYH5yr(!
                 <a href="/logout">Logout</a>
             </p>
             <a href="/messages/new" class="btn btn-primary">New message</a>
-            )p3hK4dQE";
-    } else {
-        result += R"LfUYElIt(
+            )q5JYH5yr";
+ } else { 
+result += R"6XiGfT6l(
             <p>
                 You are not logged in.
                 <a href="/login">Login</a>
             </p>
-            )LfUYElIt";
-    }
-    result += R"jXTuFMW2(
+            )6XiGfT6l";
+ } 
+result += R"ZK3vcorE(
         </div>
     </div>
 </div>
 </body>
-</html>)jXTuFMW2";
-    return result;
+</html>)ZK3vcorE";
+return result;
 }
 

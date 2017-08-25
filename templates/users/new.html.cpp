@@ -1,8 +1,7 @@
 #include "new.html.hpp"
-
 std::string UsersNewHtml::render() {
-    std::string result;
-    result += R"bFDgvjns(<!DOCTYPE HTML>
+std::string result;
+result += R"TmNXAPDV(<!DOCTYPE HTML>
 <html>
 <head>
     <meta charset="utf-8">
@@ -19,19 +18,19 @@ std::string UsersNewHtml::render() {
     <div class="row">
         <div class="col-xs-12 col-md-4 col-md-offset-4">
             <h1>Register</h1>
-            )bFDgvjns";
-    for (auto &message : errorMessages) {
-        result += R"7elP4k3G(
+            )TmNXAPDV";
+ for (auto &message : errorMessages) { 
+result += R"ZUSVm32a(
             <div class="alert alert-danger" role="alert">
                 <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                 <span class="sr-only">Error:</span>
-                )7elP4k3G";
-        result += fmt::format("{}", message);
-        result += R"8KEg6Pl5(
+                )ZUSVm32a";
+result += fmt::format("{}", message );
+result += R"lOvStdZ2(
             </div>
-            )8KEg6Pl5";
-    }
-    result += R"U09HjRTf(
+            )lOvStdZ2";
+ } 
+result += R"ThHDPB7G(
             <form class="main-table" action="/users" method="post">
                 <div class="form-group">
                     <label for="username">Username</label>
@@ -53,7 +52,7 @@ std::string UsersNewHtml::render() {
     </div>
 </div>
 </body>
-</html>)U09HjRTf";
-    return result;
+</html>)ThHDPB7G";
+return result;
 }
 

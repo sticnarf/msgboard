@@ -1,5 +1,5 @@
 #include "user.hpp"
-#include "../database/db_pool.hpp"
+#include "../database/db_connection.hpp"
 #include <random>
 #include <pqxx/pqxx>
 #include <cryptopp/filters.h>
@@ -52,62 +52,54 @@ std::string User::generatePasswordDigest(const std::string &password) {
 
 UserPtr User::getById(int id) {
     auto &pool = DBPool::getInstance();
-    auto conn = pool.borrowConnection();
+    DBConnection conn;
 
     try {
         pqxx::work txn(*conn);
         pqxx::result r = txn.exec("SELECT username, password_digest, salt FROM users WHERE id=" + txn.quote(id));
 
-        if (r.size() == 0) {
-            pool.returnConnection(conn);
+        if (r.size() == 0)
             return nullptr;
-        }
 
         auto res = std::make_shared<User>();
         res->id = id;
         res->username = r[0][0].as<std::string>();
         res->passwordDigest = r[0][1].as<std::string>();
         res->passwordSalt = r[0][2].as<std::string>();
-        pool.returnConnection(conn);
         return res;
     } catch (const std::exception &e) {
         Logger::getInstance().error("User::getById error: {}", e.what());
-        pool.returnConnection(conn);
         return nullptr;
     }
 }
 
 UserPtr User::getByUsername(const std::string &username) {
     auto &pool = DBPool::getInstance();
-    auto conn = pool.borrowConnection();
+    DBConnection conn;
 
     try {
         pqxx::work txn(*conn);
         pqxx::result r = txn.exec("SELECT id, password_digest, salt "
                                           "FROM users WHERE username=" + txn.quote(username));
 
-        if (r.size() == 0) {
-            pool.returnConnection(conn);
+        if (r.size() == 0)
             return nullptr;
-        }
 
         auto res = std::make_shared<User>();
         res->id = r[0][0].as<int>();
         res->username = username;
         res->passwordDigest = r[0][1].as<std::string>();
         res->passwordSalt = r[0][2].as<std::string>();
-        pool.returnConnection(conn);
         return res;
     } catch (const std::exception &e) {
         Logger::getInstance().error("User::getByUsername error: {}", e.what());
-        pool.returnConnection(conn);
         return nullptr;
     }
 }
 
 bool User::save() {
     auto &pool = DBPool::getInstance();
-    auto conn = pool.borrowConnection();
+    DBConnection conn;
 
     try {
         pqxx::work txn(*conn);
@@ -117,14 +109,12 @@ bool User::save() {
                  + txn.quote(passwordSalt) + ")");
 
         txn.commit();
-        pool.returnConnection(conn);
 
         auto newUser = getByUsername(username);
         this->id = newUser->id;
         return true;
     } catch (const std::exception &e) {
         Logger::getInstance().error("User::save error: {}", e.what());
-        pool.returnConnection(conn);
         return false;
     }
 }

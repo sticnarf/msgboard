@@ -1,8 +1,7 @@
 #include "new.html.hpp"
-
 std::string SessionsNewHtml::render() {
-    std::string result;
-    result += R"X3wCGfYT(<!DOCTYPE HTML>
+std::string result;
+result += R"lOtcRg59(<!DOCTYPE HTML>
 <html>
 <head>
     <meta charset="utf-8">
@@ -19,19 +18,19 @@ std::string SessionsNewHtml::render() {
     <div class="row">
         <div class="col-xs-12 col-md-4 col-md-offset-4">
             <h1>Login</h1>
-            )X3wCGfYT";
-    for (auto &message : errorMessages) {
-        result += R"evYcMcf3(
+            )lOtcRg59";
+ for (auto &message : errorMessages) { 
+result += R"7Eh9cnNR(
             <div class="alert alert-danger" role="alert">
                 <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                 <span class="sr-only">Error:</span>
-                )evYcMcf3";
-        result += fmt::format("{}", message);
-        result += R"NCdmGbL6(
+                )7Eh9cnNR";
+result += fmt::format("{}", message );
+result += R"p60XnzA2(
             </div>
-            )NCdmGbL6";
-    }
-    result += R"S3IvBTHx(
+            )p60XnzA2";
+ } 
+result += R"t5JNk8Vv(
             <form class="main-table" action="/login" method="post">
                 <div class="form-group">
                     <label for="username">Username</label>
@@ -49,7 +48,7 @@ std::string SessionsNewHtml::render() {
     </div>
 </div>
 </body>
-</html>)S3IvBTHx";
-    return result;
+</html>)t5JNk8Vv";
+return result;
 }
 

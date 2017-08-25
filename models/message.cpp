@@ -4,7 +4,7 @@
 #include "message.hpp"
 #include <iomanip>
 #include <locale>
-#include "../database/db_pool.hpp"
+#include "../database/db_connection.hpp"
 
 using namespace date;
 
@@ -39,7 +39,7 @@ Message::Message(UserPtr author, const std::string &content) :
 
 bool Message::save() {
     auto &pool = DBPool::getInstance();
-    auto conn = pool.borrowConnection();
+    DBConnection conn;
 
     try {
         pqxx::work txn(*conn);
@@ -52,18 +52,16 @@ bool Message::save() {
                  + txn.quote(ss.str()) + ")");
 
         txn.commit();
-        pool.returnConnection(conn);
         return true;
     } catch (const std::exception &e) {
         Logger::getInstance().error("Message::save error: {}", e.what());
-        pool.returnConnection(conn);
         return false;
     }
 }
 
 std::vector<MessagePtr> Message::getAll() {
     auto &pool = DBPool::getInstance();
-    auto conn = pool.borrowConnection();
+    DBConnection conn;
 
     try {
         pqxx::work txn(*conn);
@@ -93,11 +91,9 @@ std::vector<MessagePtr> Message::getAll() {
             v.push_back(message);
         }
 
-        pool.returnConnection(conn);
         return v;
     } catch (const std::exception &e) {
         Logger::getInstance().error("Message::save error: {}", e.what());
-        pool.returnConnection(conn);
         return std::vector<MessagePtr>();
     }
 }
