@@ -15,6 +15,7 @@ static void post(RequestPtr req, ResponsePtr resp);
 
 int main() {
     Logger::getInstance().setLogPath("/var/log/msgboard.log");
+    SessionBase::getInstance().setMaxBaseSize(1 << 16);
 
     auto route = std::make_shared<RouteMiddleware>();
     auto session = std::make_shared<SessionMiddleware>(route);
