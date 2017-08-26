@@ -5,17 +5,22 @@
 
 class ForceLoggedIn : public SimpleMiddleware {
 public:
-    ForceLoggedIn(const MiddlewarePtr &nextMiddleware);
+    ForceLoggedIn(MiddlewarePtr nextMiddleware);
 
     MiddlewarePtr call(RequestPtr req, std::shared_ptr<Response> &resp) override;
 };
 
 class ForceLoggedOut : public SimpleMiddleware {
 public:
-    ForceLoggedOut(const MiddlewarePtr &nextMiddleware);
+    ForceLoggedOut(MiddlewarePtr nextMiddleware);
 
     MiddlewarePtr call(RequestPtr req, std::shared_ptr<Response> &resp) override;
 };
+
+template <typename T, typename F>
+std::shared_ptr<T> build(F function) {
+    return std::make_shared<T>(std::make_shared<LambdaMiddleware>(function));
+}
 
 class AssetsMiddleware : public Middleware {
 public:

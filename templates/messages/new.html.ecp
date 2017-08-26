@@ -22,7 +22,7 @@
                 <%= message %>
             </div>
             <% } %>
-            <form class="main-table" id="new_message" action="/messages/" method="post">
+            <form class="main-table" id="new_message" action="/messages" method="post">
                 <div class="form-group">
                     <label for="content">Content</label>
                     <textarea class="form-control" id="content" name="content" row="3" form="new_message"></textarea>

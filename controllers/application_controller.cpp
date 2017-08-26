@@ -15,7 +15,7 @@ MiddlewarePtr ForceLoggedIn::call(RequestPtr req, std::shared_ptr<Response> &res
     return nextMiddleware->call(req, resp);
 }
 
-ForceLoggedIn::ForceLoggedIn(const MiddlewarePtr &nextMiddleware) : SimpleMiddleware(nextMiddleware) {}
+ForceLoggedIn::ForceLoggedIn(MiddlewarePtr nextMiddleware) : SimpleMiddleware(nextMiddleware) {}
 
 MiddlewarePtr ForceLoggedOut::call(RequestPtr req, std::shared_ptr<Response> &resp) {
     if (SessionsHelper::currentUser(req) != nullptr) {
@@ -25,4 +25,4 @@ MiddlewarePtr ForceLoggedOut::call(RequestPtr req, std::shared_ptr<Response> &re
     return nextMiddleware->call(req, resp);
 }
 
-ForceLoggedOut::ForceLoggedOut(const MiddlewarePtr &nextMiddleware) : SimpleMiddleware(nextMiddleware) {}
+ForceLoggedOut::ForceLoggedOut(MiddlewarePtr nextMiddleware) : SimpleMiddleware(nextMiddleware) {}
