@@ -25,10 +25,13 @@ pqxx::connection *DBPool::borrowConnection() {
 }
 
 void DBPool::returnConnection(pqxx::connection *conn) {
-    std::lock_guard<std::mutex> poolLock(poolMutex);
     {
-        std::lock_guard<std::mutex> lock(returnMutex);
+        std::unique_lock<std::mutex> poolLock(poolMutex, std::defer_lock);
+        std::unique_lock<std::mutex> returnLock(returnMutex, std::defer_lock);
+        std::lock(poolLock, returnLock);
         freeConnections.push(conn);
+        poolLock.unlock();
+        returnLock.unlock();
     }
     returnCv.notify_one();
 }
