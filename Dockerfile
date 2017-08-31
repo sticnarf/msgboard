@@ -11,7 +11,7 @@ COPY . .
 RUN mkdir build \
  && cd build \
  && cmake -DCMAKE_BUILD_TYPE=RELEASE .. \
- && make -j2
+ && make -j
 
 VOLUME /var/log
 EXPOSE 8089
